@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import AssetLiabilityContext from '../context/AssetLiabilityContext';
+import AssetLiabilityContext, { ASSET, LIABILITY } from '../context/AssetLiabilityContext';
 
 
 function AssetLiabilityForm({className, label}) {
@@ -26,17 +26,17 @@ function AssetLiabilityForm({className, label}) {
                         min="0"
                         step="0.01"
                         name="entryAmount" 
-                        defaultValue={formData.entryAmount}
+                        value={formData.entryAmount}
                         onChange={handleFormChange} />
                     </span>
                 <div>
                     <span>
                         <label>Asset:</label>
-                        <input onChange={handleFormChange} type="radio" defaultChecked value="ASSET" name="entryType"/>
+                        <input onChange={handleFormChange} type="radio" checked={formData.entryType === ASSET} value={ASSET} name="entryType"/>
                     </span>
                     <span>
                         <label>Liability:</label>
-                        <input onChange={handleFormChange} type="radio" value="LIABILITY" name="entryType"/> 
+                        <input onChange={handleFormChange} type="radio" checked={formData.entryType === LIABILITY} value={LIABILITY} name="entryType"/> 
                     </span>
                 </div>
                 <input type="submit" value="Submit" />

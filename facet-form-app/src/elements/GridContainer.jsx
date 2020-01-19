@@ -15,6 +15,6 @@ height: 100vh;
     "nav"
     "content";
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr .5fr 6fr;
+    grid-template-rows: .5fr .5fr 8fr;
 }
 `;

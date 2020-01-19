@@ -41,8 +41,12 @@ const AssetLiabilityTableFooter = ({total}) => (
         <tr>
             <td>Assets</td>
             <td>${total.assets}</td>
+        </tr>
+        <tr>
             <td>Liabilities</td>
             <td>${total.liabilities || '0'}</td>
+        </tr>
+        <tr>
             <td>Net</td>
             <td>${total.networth}</td>
         </tr>
@@ -54,8 +58,9 @@ function AssetLiabilityTable({ className }) {
     const { entries, total } = tableContent;
 
     return (
-        <div>
-            <table className={className}>
+        <div className={className}>
+            <table>
+                <caption>Financial Report</caption>
                 <AssetLiabilityTableHeader headers={["Entry Name", "Amount", "Type", "Delete"]} />
                 <AssetLiabilityTableBody content={entries}
                 handleDeleteEntry={handleDeleteEntry}/>
@@ -68,4 +73,9 @@ function AssetLiabilityTable({ className }) {
 
 export default styled(AssetLiabilityTable)`
 grid-area: content;
+display: flex;
+overflow: scroll;
+& * {
+    flex-grow: 1;
+}
 `;

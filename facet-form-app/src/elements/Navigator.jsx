@@ -21,7 +21,6 @@ border-right: 1px solid #222;
 box-shadow: 5px 0 5px rgba(0, 0, 0, .24);
 display: flex;
 a {
-    max-height: 5rem;
     text-align: center;
     padding: 1rem;
 }
@@ -32,6 +31,9 @@ a:hover{
 @media only screen and (max-width: 600px){
     flex-direction: row;
     margin: 0;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    a {
+        flex-grow: 1;
+    }
 }
 `;

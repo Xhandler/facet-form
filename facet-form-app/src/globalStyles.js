@@ -9,18 +9,28 @@ html {
 body {
     margin: 0;
 }
+td, th {
+    padding: .4rem;
+    text-align: left;
+}
 tr {
     border-top: 1px solid #dddddd;
     border-bottom: 1px solid #dddddd;
 }
 table {
     border-bottom: 2px solid #dddddd;
+    border-collapse: collapse;
 }
-tr:hover {
-    background-color: #222222;
-    color: #eeeeee;
+tbody tr:nth-child(even) {
+  background-color: #eee;
 }
-
+tbody tr:nth-child(odd) {
+  background-color: #fff;
+}
+table thead {
+  color: white;
+  background-color: #555;
+}
 input {
     border: 4px solid white; 
     -webkit-box-shadow: 

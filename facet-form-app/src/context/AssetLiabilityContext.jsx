@@ -1,10 +1,13 @@
 import React, { createContext, useState, useEffect } from "react";
 const API = `http://${window.location.host}/api/financial`;
 
+export const ASSET  = "ASSET";
+export const LIABILITY = "LIABILITY"
+
 const defaultFormData = {
   entryName: "",
   entryAmount: 0,
-  entryType: "ASSET"
+  entryType: ASSET
 };
 
 const AssetLiabilityContext = createContext({
@@ -17,11 +20,7 @@ const AssetLiabilityContext = createContext({
 });
 
 export function AssetLiabilityContextContainer({ children }) {
-  const [formData, setFormData] = useState({
-    entryName: "",
-    entryAmount: 0,
-    entryType: "ASSET"
-  });
+  const [formData, setFormData] = useState(defaultFormData);
   const [loading, setLoading] = useState(true);
 
   const [tableContent, setTableContent] = useState({
