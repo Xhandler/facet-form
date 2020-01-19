@@ -6,7 +6,13 @@ const LIABILITY = 'LIABILITY';
 module.exports = {
     async getAllEntries() {
         const entries = await db.query('SELECT * FROM finance_entry');
-        return entries;
+        //Please excuse this.
+        return entries.map(({entryamount, entryname, entrytype, id})=>({
+            entryAmount: entryamount,
+            entryName: entryname,
+            entryType: entrytype,
+            id
+        }));
     },
     async createEntry({
         entryName,
@@ -14,7 +20,7 @@ module.exports = {
         entryType
     }) {
         await db.query(
-            'INSERT INTO finance_entry (name, amount, type) VALUES ($1, $2, $3)',
+            'INSERT INTO finance_entry (entryName, entryAmount, entryType) VALUES ($1, $2, $3)',
             [entryName, entryAmount, entryType]
         );
     },
@@ -32,29 +38,34 @@ module.exports = {
     calculateTotals(entries) {
         const total = {
             networth: 0,
-            liability: 0,
+            liabilities: 0,
             assets: 0
         };
         if(!entries)
             return total;
 
         entries.forEach(({
-            type,
+            entryType,
             entryAmount
         }) => {
-            switch (type) {
+            switch (entryType) {
                 case ASSET:
                     total.assets += entryAmount;
                     total.networth += entryAmount;
                     break;
                 case LIABILITY:
-                    total.assets -= entryAmount;
+                    total.liabilities += entryAmount;
                     total.networth -= entryAmount;
                     break;
                 default:
                     throw new Error('Invalid Entry');
             }
         });
-        return total;
+        
+        return {
+            networth: total.networth.toFixed(2),
+            assets: total.assets.toFixed(2),
+            liabilities: total.liabilities.toFixed(2)
+        };
     }
 };
