@@ -10,23 +10,34 @@ function AssetLiabilityForm({className, label}) {
         <div className={className}>
             <h2><u>{label}</u></h2>
             <form  onSubmit={handleFormSumbit}>
-                <label>Entry Name:</label>
-                <input 
-                    type="text"
-                    name="entryName"
-                    onChange={handleFormChange}
-                    value={formData.entryName}
-                />
-                <label>Amount:</label>
-                <input 
-                    type="number"
-                    min="0"
-                    name="entryAmount" 
-                    defaultValue={formData.entryAmount}
-                    onChange={handleFormChange} />
+                <span>
+                    <label>Entry Name:</label>
+                    <input 
+                        type="text"
+                        name="entryName"
+                        onChange={handleFormChange}
+                        value={formData.entryName}
+                    />
+                </span>
+                <span>
+                    <label>Amount:</label>
+                    <input 
+                        type="number"
+                        min="0"
+                        step="0.01"
+                        name="entryAmount" 
+                        defaultValue={formData.entryAmount}
+                        onChange={handleFormChange} />
+                    </span>
                 <div>
-                    <input type="radio" defaultChecked value="ASSET" name="type"/> Asset
-                    <input type="radio" value="LIABILITY" name="type"/> Liablity
+                    <span>
+                        <label>Asset:</label>
+                        <input onChange={handleFormChange} type="radio" defaultChecked value="ASSET" name="entryType"/>
+                    </span>
+                    <span>
+                        <label>Liability:</label>
+                        <input onChange={handleFormChange} type="radio" value="LIABILITY" name="entryType"/> 
+                    </span>
                 </div>
                 <input type="submit" value="Submit" />
             </form>
@@ -36,4 +47,31 @@ function AssetLiabilityForm({className, label}) {
 
 AssetLiabilityForm.defaultProps = { label: "Asset/Liability Form"};
 
-export default AssetLiabilityForm;
+export default styled(AssetLiabilityForm)`
+text-align: center;
+border: 1px solid #333;
+background-color: lightgray;
+grid-area: content;
+form {
+    padding: 8rem;
+    display: flex;
+    flex-direction: column;
+}
+@media only screen and (max-width: 600px){
+    form {
+        padding: 0;
+    }
+}
+form > span {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+form > div {
+    display: flex;
+    justify-content: space-evenly;
+}
+form > * {
+    padding: 1rem;
+}
+`;

@@ -14,21 +14,21 @@ const AssetLiabilityTableHeader = ({ headers }) => (
     </tr>
 </thead>
 );
-const AssetLiabilityTableBody = ({content}) => (
+const AssetLiabilityTableBody = ({content, handleDeleteEntry}) => (
     <tbody>
-        {content.map(({ entryName, entryAmont, type}, i) => (
+        {content.map(({ entryName, entryAmount, entryType, id}, i) => (
             <tr key={`al-th-${i}`}>
                 <td>
                     {entryName}
                 </td>
                 <td>
-                    {entryAmont}
+                    ${entryAmount}
                 </td>
                 <td>
-                    {type}
+                    {entryType}
                 </td>
                 <td>
-                    <button style={{height:"100%", width:"100%"}}>
+                    <button onClick={() => handleDeleteEntry(id)} style={{height:"100%", width:"100%"}}>
                         <FontAwesomeIcon icon="trash" size="lg"/>
                     </button>
                 </td>
@@ -36,24 +36,36 @@ const AssetLiabilityTableBody = ({content}) => (
         ))}
     </tbody>
 )
+const AssetLiabilityTableFooter = ({total}) => (
+    <tfoot>
+        <tr>
+            <td>Assets</td>
+            <td>${total.assets}</td>
+            <td>Liabilities</td>
+            <td>${total.liabilities || '0'}</td>
+            <td>Net</td>
+            <td>${total.networth}</td>
+        </tr>
+    </tfoot>
+)
 function AssetLiabilityTable({ className }) {
-    const { deleteEntry, table } = useContext(AssetLiabilityContext);
+    const { handleDeleteEntry, tableContent } = useContext(AssetLiabilityContext);
+
+    const { entries, total } = tableContent;
 
     return (
         <div>
             <table className={className}>
                 <AssetLiabilityTableHeader headers={["Entry Name", "Amount", "Type", "Delete"]} />
-                <AssetLiabilityTableBody content={[
-                    {
-                        entryName: "Chandler",
-                        entryAmont: 9123,
-                        type: "ASSET"
-                    }
-                ]}/>
+                <AssetLiabilityTableBody content={entries}
+                handleDeleteEntry={handleDeleteEntry}/>
+                <AssetLiabilityTableFooter total={total} />
             </table>
         </div>
     )
 
 }
 
-export default AssetLiabilityTable;
+export default styled(AssetLiabilityTable)`
+grid-area: content;
+`;
