@@ -1,13 +1,14 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect } from 'react';
+
 const API = `http://${window.location.host}/api/financial`;
 
-export const ASSET  = "ASSET";
-export const LIABILITY = "LIABILITY"
+export const ASSET = 'ASSET';
+export const LIABILITY = 'LIABILITY';
 
 const defaultFormData = {
-  entryName: "",
+  entryName: '',
   entryAmount: 0,
-  entryType: ASSET
+  entryType: ASSET,
 };
 
 const AssetLiabilityContext = createContext({
@@ -15,8 +16,8 @@ const AssetLiabilityContext = createContext({
   loading: false,
   table: {
     content: [],
-    total: 0
-  }
+    total: 0,
+  },
 });
 
 export function AssetLiabilityContextContainer({ children }) {
@@ -28,15 +29,15 @@ export function AssetLiabilityContextContainer({ children }) {
     total: {
       networth: 0,
       assets: 0,
-      liabilities: 0
-    }
+      liabilities: 0,
+    },
   });
 
   const handleFormChange = event => {
     const { name, value } = event.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -44,37 +45,33 @@ export function AssetLiabilityContextContainer({ children }) {
     event.preventDefault();
     setLoading(true);
     fetch(`${API}/entry`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(formData)
+      body: JSON.stringify(formData),
     }).then(res => {
       setFormData(defaultFormData);
-      res.json().then(setTableContent)
+      res.json().then(setTableContent);
       setLoading(false);
     });
   };
 
   const handleDeleteEntry = id => {
     fetch(`${API}/entry`, {
-      method: "DELETE",
+      method: 'DELETE',
       headers: {
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ id })
-    }).then(
-      res => res.json().then(setTableContent)
-    );
+      body: JSON.stringify({ id }),
+    }).then(res => res.json().then(setTableContent));
   };
   useEffect(() => {
-    fetch(`${API}/report`).then(
-      res => {
-        res.json().then(setTableContent)
-        setLoading(false);
-      }
-    );
-  }, [])
+    fetch(`${API}/report`).then(res => {
+      res.json().then(setTableContent);
+      setLoading(false);
+    });
+  }, []);
   return (
     <AssetLiabilityContext.Provider
       value={{
@@ -83,7 +80,7 @@ export function AssetLiabilityContextContainer({ children }) {
         tableContent,
         handleFormSumbit,
         handleFormChange,
-        handleDeleteEntry
+        handleDeleteEntry,
       }}
     >
       {children}
