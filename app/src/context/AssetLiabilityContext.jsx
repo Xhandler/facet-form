@@ -56,8 +56,11 @@ export function AssetLiabilityContextContainer({ children }) {
       }),
     }).then(res => {
       setFormData(defaultFormData);
-      res.json().then(setTableContent);
-      setLoading(false);
+
+      if (res.status === 200) {
+        res.json().then(setTableContent);
+        setLoading(false);
+      }
     });
   };
 
@@ -68,7 +71,11 @@ export function AssetLiabilityContextContainer({ children }) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ id }),
-    }).then(res => res.json().then(setTableContent));
+    }).then(res => {
+      if (res.status === 200) {
+        res.json().then(setTableContent);
+      }
+    });
   };
   useEffect(() => {
     fetch(`${API}/report`).then(res => {
