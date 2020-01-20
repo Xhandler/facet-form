@@ -100,6 +100,6 @@ export default styled(AssetLiabilityTable)`
   caption {
     font-weight: 600;
     font-size: 20px;
-    margin-right: 10rem;
+    text-align: left;
   }
 `;
