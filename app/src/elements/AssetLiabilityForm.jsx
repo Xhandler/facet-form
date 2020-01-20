@@ -16,7 +16,7 @@ function AssetLiabilityForm({ className, label }) {
       <form onSubmit={handleFormSumbit}>
         <h3>{label}</h3>
         <span>
-          <label>Entry Name:</label>
+          <label>Name:</label>
           <input
             type="text"
             name="entryName"
@@ -66,7 +66,6 @@ function AssetLiabilityForm({ className, label }) {
 AssetLiabilityForm.defaultProps = { label: 'Asset/Liability Form' };
 export default styled(AssetLiabilityForm)`
   grid-area: content;
-  flex-grow: 1;
   form {
     background-color: #616a86;
     margin-right: 1rem;
@@ -76,7 +75,7 @@ export default styled(AssetLiabilityForm)`
     flex-direction: column;
   }
   h3 {
-    font-weight: 500;
+    font-weight: 600;
     font-size: 20px;
     border-bottom: 2px solid #dedce8;
   }
@@ -93,6 +92,17 @@ export default styled(AssetLiabilityForm)`
   input[type='number'] {
     flex-grow: 1;
     height: 2rem;
+  }
+  input[type='submit'] {
+    flex-grow: 1;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 1rem;
+    color: #000;
+  }
+  input[type='submit']:hover {
+    background-color: #3e9434;
+    color: #eed;
   }
   label {
     min-width: 30%;

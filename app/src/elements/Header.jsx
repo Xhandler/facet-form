@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import { A } from 'hookrouter';
 
 function Header({ company, className }) {
   return (
     <header className={className}>
-      <p>{company}</p>
+      <A href="/">{company}</A>
     </header>
   );
 }

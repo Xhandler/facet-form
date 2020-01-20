@@ -1,6 +1,4 @@
-import {
-    createGlobalStyle
-} from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
 * {
@@ -37,8 +35,8 @@ table thead {
   background-color: #383C4C;  
 }
 input {
-    color: #555;
-    font-weight: 500;
+    color: #EED;
+    font-weight: 600;
     border: 3px solid #6F7999; 
     -webkit-box-shadow: 
       inset 0 0 4px  rgba(0,0,0,0.1),
