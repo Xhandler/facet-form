@@ -1,4 +1,5 @@
-cd ../facet-form-app
+cd ./facet-form-app
 npm run build
-cd build
-cp -R * ../../server/public
+mkdir -p ../server/public
+rm -rf ../server/public/*
+cp -R ./build/* ../server/public

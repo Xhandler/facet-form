@@ -1,5 +1,6 @@
-const express = require('express')
-const bodyParser = require('body-parser')
+const express = require('express');
+const bodyParser = require('body-parser');
+const path = require('path');
 
 const { host, serverPort} = require('./config');
 
@@ -9,15 +10,15 @@ const app = express()
 
 app.use(express.static('public'));
 
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + 'public/index.html'));
-});
-
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(routes);
+
+app.get('*', function(req, res) {
+    res.sendFile(path.join(__dirname + '/public/index.html'));
+});
 
 app.listen({
     host,
