@@ -35,7 +35,7 @@ table thead {
   background-color: #383C4C;  
 }
 input {
-    color: #EED;
+    color: black;
     font-weight: 600;
     border: 3px solid #6F7999; 
     -webkit-box-shadow: 

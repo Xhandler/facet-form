@@ -35,6 +35,7 @@ export function AssetLiabilityContextContainer({ children }) {
 
   const handleFormChange = event => {
     const { name, value } = event.target;
+
     setFormData({
       ...formData,
       [name]: value,
@@ -49,7 +50,10 @@ export function AssetLiabilityContextContainer({ children }) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify({
+        ...formData,
+        entryAmount: Number(formData.entryAmount),
+      }),
     }).then(res => {
       setFormData(defaultFormData);
       res.json().then(setTableContent);
