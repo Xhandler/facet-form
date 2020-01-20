@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 
-const { host, serverPort} = require('./config');
+const { HOST, SERVER_PORT } = require('./config');
 
 const routes  = require('./routes')
 
@@ -21,6 +21,6 @@ app.get('*', function(req, res) {
 });
 
 app.listen({
-    host,
-    port: serverPort
-}, () => console.log(`listening on port: ${serverPort}`));
+    host:HOST,
+    port: SERVER_PORT
+}, () => console.log(`listening on port: ${SERVER_PORT}`));

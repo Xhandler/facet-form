@@ -2,17 +2,17 @@ const {
   Pool
 } = require('pg');
 const {
-  dbSocket,
-  dbUser,
-  dbPassword,
-  dbName
+  DB_SOCKET,
+  DB_USER,
+  DB_PASSWORD,
+  DB_NAME
 } = require('../config');
 
 const pool = new Pool({
-  host:dbSocket,
-  user:dbUser,
-  password:dbPassword,
-  database:dbName
+  host:DB_SOCKET,
+  user:DB_USER,
+  password:DB_PASSWORD,
+  database:DB_NAME
 });
 
 module.exports = {
