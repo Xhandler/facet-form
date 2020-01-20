@@ -70,7 +70,7 @@ export default styled(AssetLiabilityForm)`
     background-color: #616a86;
     margin-right: 1rem;
     font-weight: 500;
-    padding: 8rem;
+    padding: 8rem 8rem 0 8rem;
     display: flex;
     flex-direction: column;
   }
