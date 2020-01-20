@@ -28,7 +28,7 @@ const AssetLiabilityTableBody = ({content, handleDeleteEntry}) => (
                     {entryType}
                 </td>
                 <td>
-                    <button onClick={() => handleDeleteEntry(id)} style={{height:"100%", width:"100%"}}>
+                    <button onClick={() => handleDeleteEntry(id)}>
                         <FontAwesomeIcon icon="trash" size="lg"/>
                     </button>
                 </td>
@@ -39,16 +39,16 @@ const AssetLiabilityTableBody = ({content, handleDeleteEntry}) => (
 const AssetLiabilityTableFooter = ({total}) => (
     <tfoot>
         <tr>
-            <td>Assets</td>
-            <td>${total.assets}</td>
+            <td >Total Assets</td>
+            <td colSpan="3">${total.assets}</td>
         </tr>
         <tr>
-            <td>Liabilities</td>
-            <td>${total.liabilities || '0'}</td>
+            <td>Total Liabilities</td>
+            <td colSpan="3">${total.liabilities}</td>
         </tr>
         <tr>
-            <td>Net</td>
-            <td>${total.networth}</td>
+            <td>Networth</td>
+            <td colSpan="3">${total.networth}</td>
         </tr>
     </tfoot>
 )
@@ -61,7 +61,7 @@ function AssetLiabilityTable({ className }) {
         <div className={className}>
             <table>
                 <caption>Financial Report</caption>
-                <AssetLiabilityTableHeader headers={["Entry Name", "Amount", "Type", "Delete"]} />
+                <AssetLiabilityTableHeader headers={["Entry Name", "Balance", "Type", "Delete"]} />
                 <AssetLiabilityTableBody content={entries}
                 handleDeleteEntry={handleDeleteEntry}/>
                 <AssetLiabilityTableFooter total={total} />
@@ -73,9 +73,27 @@ function AssetLiabilityTable({ className }) {
 
 export default styled(AssetLiabilityTable)`
 grid-area: content;
-display: flex;
-overflow: scroll;
-& * {
-    flex-grow: 1;
+margin-right: 1rem;
+margin-top: .5rem;
+button {
+    text-align: center;
+    height:"100%";
+    width:"100%";
+    border:none;
+    background-color: rgba(0,0,0, 0);
+}
+button:hover > svg {
+    background-color: red;
+}
+@media only screen and (max-width: 600px){
+    margin: 0;
+}
+table {
+    width: 100%;
+    background-color: #383C4C;
+}
+caption {
+    font-weight: 600;
+    font-size: 20px;
 }
 `;

@@ -19,7 +19,7 @@ export default class ErrorBoundary extends React.Component {
         return  (
             <div>
                 <h1>Something went wrong!</h1>
-                <button onClick={ () => window.location.reload() }>Reload?</button>
+                <button onClick={ () => window.location.replace("/") }>Reload?</button>
             </div>
         );
       }

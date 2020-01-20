@@ -8,8 +8,6 @@ const {
   dbName
 } = require('../config');
 
-console.log("DB", dbSocket, dbPassword, dbName, dbUser);
-
 const pool = new Pool({
   host:dbSocket,
   user:dbUser,

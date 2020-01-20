@@ -12,9 +12,9 @@ height: 100vh;
 @media only screen and (max-width: 600px){
     grid-template-areas:
     "header"
-    "nav"
-    "content";
+    "content"
+    "nav";
     grid-template-columns: 1fr;
-    grid-template-rows: .5fr .5fr 8fr;
+    grid-template-rows: .5fr 8fr .5fr;
 }
 `;

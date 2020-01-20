@@ -2,7 +2,7 @@ import React from 'react';
 import GlobalStyles from './globalStyles';
 import AssetLiabilityTable from './elements/AssetLiabilityTable';
 import AssetLiabilityForm from './elements/AssetLiabilityForm';
-import CodeChallengeHeader from './elements/CodeChallengeHeader';
+import Header from './elements/Header';
 import ErrorBoundary from './elements/ErrorBoundary';
 import GridContainer from './elements/GridContainer';
 import Navigator from './elements/Navigator';
@@ -20,8 +20,8 @@ function App() {
       <ErrorBoundary>
         <GlobalStyles />
         <GridContainer>
+          <Header />
           <Navigator />
-          <CodeChallengeHeader />
           <AssetLiabilityContextContainer>
             {content || <AssetLiabilityForm label="Asset/Liability Form" />}
           </AssetLiabilityContextContainer>

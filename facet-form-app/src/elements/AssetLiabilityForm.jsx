@@ -8,8 +8,8 @@ function AssetLiabilityForm({className, label}) {
 
     return (
         <div className={className}>
-            <h2><u>{label}</u></h2>
             <form  onSubmit={handleFormSumbit}>
+                <h3>{label}</h3>
                 <span>
                     <label>Entry Name:</label>
                     <input 
@@ -48,28 +48,55 @@ function AssetLiabilityForm({className, label}) {
 AssetLiabilityForm.defaultProps = { label: "Asset/Liability Form"};
 
 export default styled(AssetLiabilityForm)`
-text-align: center;
-border: 1px solid #333;
-background-color: lightgray;
 grid-area: content;
+flex-grow: 1;
 form {
+    background-color: #616A86;
+    margin-right: 1rem;
+    font-weight: 500;
     padding: 8rem;
     display: flex;
     flex-direction: column;
 }
+h3 {
+    font-weight: 500;
+    font-size: 20px;
+    border-bottom: 2px solid #DEDCE8;
+}
 @media only screen and (max-width: 600px){
     form {
         padding: 0;
+        margin: 0;
+
     }
+    form > div {
+        padding: 1rem;
+    }
+}
+input[type="text"], input[type="number"] {
+    flex-grow: 1;
+    height: 2rem;
+}
+label {
+    min-width: 30%;
 }
 form > span {
     display: flex;
     justify-content: space-between;
     align-content: center;
+    border-bottom: 2px solid #DEDCE8;
 }
 form > div {
     display: flex;
     justify-content: space-evenly;
+    border-bottom: 2px solid #DEDCE8;
+
+}
+form > div > span {
+    float: right;
+    label {
+        font-size: 1rem;
+    }
 }
 form > * {
     padding: 1rem;
