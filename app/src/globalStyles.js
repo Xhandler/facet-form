@@ -7,6 +7,7 @@ const GlobalStyle = createGlobalStyle`
 }
 .App {
   max-height: 100vh;
+  max-width: 100vw;
 }
 body {
     margin: 0;

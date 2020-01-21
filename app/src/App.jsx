@@ -1,19 +1,20 @@
 /* eslint-disable react/display-name */
 import React from 'react';
 import { useRoutes } from 'hookrouter';
-
 import GlobalStyles from './globalStyles';
-import AssetLiabilityTable from './elements/AssetLiabilityTable';
-import AssetLiabilityForm from './elements/AssetLiabilityForm';
 import Header from './elements/Header';
 import ErrorBoundary from './elements/ErrorBoundary';
 import GridContainer from './elements/GridContainer';
 import Navigator from './elements/Navigator';
 import { AssetLiabilityContextContainer } from './context/AssetLiabilityContext';
+import FormPage from './pages/FormPage';
+import FinancialReportPage from './pages/FinancialReportPage';
+import HomePage from './pages/HomePage';
 
 const routes = {
-  '/form': () => <AssetLiabilityForm label="Asset/Liability Form" />,
-  '/report': () => <AssetLiabilityTable />,
+  '/': () => <HomePage />,
+  '/form': () => <FormPage />,
+  '/report': () => <FinancialReportPage />,
 };
 function App() {
   const content = useRoutes(routes);
@@ -25,7 +26,7 @@ function App() {
           <Header />
           <Navigator />
           <AssetLiabilityContextContainer>
-            {content || <AssetLiabilityForm label="Asset/Liability Form" />}
+            {content || <HomePage />}
           </AssetLiabilityContextContainer>
         </GridContainer>
       </ErrorBoundary>

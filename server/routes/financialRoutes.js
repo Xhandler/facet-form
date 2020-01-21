@@ -9,10 +9,15 @@ router.get('/report', async (req, res) => {
 router.post('/entry', async (req, res) => {
   try {
     const {entryAmount, entryName, entryType} = req.body;
-    if (!entryAmount || !entryName  || !entryType)
-      return res.status(400).json({message: 'Invalid Entry!'});
+    // if (!entryAmount || !entryName  || !entryType)
+      // Any string, any real number will now be accepted
+      // return res.status(400).json({message: 'Invalid Entry!'});
 
-    await Financial.createEntry({ entryAmount, entryName, entryType });
+    await Financial.createEntry({
+      entryAmount:Number(entryAmount),
+      entryName:String(entryName),
+      entryType: String(entryType) 
+    });
 
     const report = await Financial.getFinanicalReport();
 

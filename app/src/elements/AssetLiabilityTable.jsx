@@ -1,11 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import fontawesome from '@fortawesome/fontawesome';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import AssetLiabilityContext from '../context/AssetLiabilityContext';
-
-fontawesome.library.add(faTrash);
+import Icon from './Icon';
 
 const AssetLiabilityTableHeader = ({ headers }) => (
   <thead>
@@ -30,7 +26,7 @@ const AssetLiabilityTableBody = ({ content, handleDeleteEntry }) => (
         <td>{entryType}</td>
         <td>
           <button type="button" onClick={() => handleDeleteEntry(id)}>
-            <FontAwesomeIcon icon="trash" size="lg" />
+            <Icon icon="trash" size="lg" />
           </button>
         </td>
       </tr>
@@ -60,26 +56,23 @@ function AssetLiabilityTable({ className }) {
   const { entries, total } = tableContent;
 
   return (
-    <div className={className}>
-      <table>
-        <caption>Financial Report</caption>
-        <AssetLiabilityTableHeader
-          headers={['Entry Name', 'Balance', 'Type', 'Delete']}
-        />
-        <AssetLiabilityTableBody
-          content={entries}
-          handleDeleteEntry={handleDeleteEntry}
-        />
-        <AssetLiabilityTableFooter total={total} />
-      </table>
-    </div>
+    <table className={className}>
+      <caption>Financial Report</caption>
+      <AssetLiabilityTableHeader
+        headers={['Entry Name', 'Balance', 'Type', 'Delete']}
+      />
+      <AssetLiabilityTableBody
+        content={entries}
+        handleDeleteEntry={handleDeleteEntry}
+      />
+      <AssetLiabilityTableFooter total={total} />
+    </table>
   );
 }
 
 export default styled(AssetLiabilityTable)`
-  grid-area: content;
-  margin-right: 1rem;
-  margin-top: 0.5rem;
+  width: 100%;
+  background-color: #383c4c;
   button {
     text-align: center;
     height: '100%';
@@ -89,13 +82,6 @@ export default styled(AssetLiabilityTable)`
   }
   button:hover > svg {
     background-color: red;
-  }
-  @media only screen and (max-width: 600px) {
-    margin: 0;
-  }
-  table {
-    width: 100%;
-    background-color: #383c4c;
   }
   caption {
     font-weight: 600;

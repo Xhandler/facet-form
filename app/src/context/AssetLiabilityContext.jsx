@@ -10,28 +10,25 @@ const defaultFormData = {
   entryAmount: 0,
   entryType: ASSET,
 };
+const defaultTableContent = {
+  entries: [],
+  total: {
+    networth: 0,
+    assets: 0,
+    liabilities: 0,
+  },
+};
 
 const AssetLiabilityContext = createContext({
-  defaultFormData,
-  loading: false,
-  table: {
-    content: [],
-    total: 0,
-  },
+  formData: defaultFormData,
+  tableContent: defaultTableContent,
 });
 
 export function AssetLiabilityContextContainer({ children }) {
   const [formData, setFormData] = useState(defaultFormData);
   const [loading, setLoading] = useState(true);
 
-  const [tableContent, setTableContent] = useState({
-    entries: [],
-    total: {
-      networth: 0,
-      assets: 0,
-      liabilities: 0,
-    },
-  });
+  const [tableContent, setTableContent] = useState(defaultTableContent);
 
   const handleFormChange = event => {
     const { name, value } = event.target;
