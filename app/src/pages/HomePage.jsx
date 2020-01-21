@@ -1,17 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import AssetLiabilityContext from '../context/AssetLiabilityContext';
-import PieChart from '../elements/PieChart';
-
-// Don't trust this, grabbed it from SO
-// Firefox 1.0+
-const isFirefox = typeof InstallTrigger !== 'undefined';
-// Safari 3.0+ "[object HTMLElementConstructor]"
-const isSafari =
-  /constructor/i.test(window.HTMLElement) ||
-  (function(p) {
-    return p.toString() === '[object SafariRemoteNotification]';
-  })(!window.safari || typeof safari !== 'undefined');
+import LineChart from '../elements/LineChart';
 
 function HomePage({ className }) {
   const { tableContent } = useContext(AssetLiabilityContext);
@@ -23,18 +13,10 @@ function HomePage({ className }) {
   // Excuse this slopiness, floats and JS don't like each other.
   return (
     <div className={className}>
-      {isFirefox || isSafari ? (
-        <h3>
-          No support for conic-gradient :( this would be a pie chart... Try
-          chrome!
-        </h3>
-      ) : (
-        <PieChart
-          assetPercent={assetPercent}
-          liabilityPercent={liabilityPercent}
-        />
-      )}
-
+      <LineChart
+        assetPercent={assetPercent}
+        liabilityPercent={liabilityPercent}
+      />
       <div className="summary">
         <h3>Summary:</h3>
         <div>
